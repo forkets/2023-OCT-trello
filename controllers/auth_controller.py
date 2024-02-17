@@ -53,8 +53,7 @@ def auth_login():
     # If user exists and password is correct
     if user and bcrypt.check_password_hash(user.password, body_data.get("password")):
         # create jwt
-        token = create_access_token(identity=str(
-            user.id), expires_delta=timedelta(days=1))
+        token = create_access_token(identity=str(user.id), expires_delta=timedelta(days=1))
         # return the token along with the user info
         return {"email": user.email, "token": token, "is_admin": user.is_admin}
     # else
