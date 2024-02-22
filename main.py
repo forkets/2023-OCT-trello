@@ -1,3 +1,4 @@
+import os
 from flask import Flask
 from init import db, ma, bcrypt, jwt
 
@@ -7,7 +8,7 @@ def create_app():
     app.json.sort_keys = False
 
     # configs
-    app.config["SQLALCHEMY_DATABASE_URI"]="postgresql+psycopg2://trello_dev:123456@localhost:5432/trello_db"
+    app.config["SQLALCHEMY_DATABASE_URI"]=os.environ.get("DATABASE_URI")
     app.config["JWT_SECRET_KEY"]="secret"
 
     # connect libraries with flask app
